@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+
+# Build output (GitHub Actions rebuilds this)
+dist/
+dist-deploy.zip
+out/
+
+# CloudBase serverless functions (unrelated to the SPA, huge + contains node_modules)
+tcb-functions/
+
+# Local env / secrets
+.env
+.env.*
+*.local
+
+# CloudBase config contains the env ID — keep out of any repo
+cloudbaserc.json
+
+# Deploy helper scripts contain the env ID
+deploy-behaviors.sh
+deploy-teammate-ops.sh
+
+# Logs / OS files
+*.log
+.DS_Store
+
+# EdgeOne / misc
+.edgeone/
+.workbuddy/
+tsconfig.tsbuildinfo
+
+# Vercel (legacy)
+.vercel

@@ -1,0 +1,195 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #eef2fb;
+  --ink: #0f1b3d;
+  --muted: #3f496b;
+  --line: rgba(15, 27, 61, 0.12);
+  --accent: #06b6d4;
+  --accent2: #6366f1;
+  --accent3: #8b5cf6;
+  --accent-warm: #ff7a59;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: "DM Sans", -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 极光浅色科技底：凉调白底 + 青蓝/靛蓝极光光晕 + 浅霓虹网格 */
+body {
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(55% 50% at 15% 0%, rgba(6, 182, 212, 0.12), transparent 60%),
+    radial-gradient(45% 45% at 85% 10%, rgba(99, 102, 241, 0.12), transparent 60%),
+    linear-gradient(rgba(15, 27, 61, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 27, 61, 0.035) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 44px 44px, 44px 44px;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* 键盘可达性：统一 focus 环（无障碍，不移除焦点指示） */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+/* 输入控件聚焦时的品牌光环（替代默认 outline，更精致） */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.18);
+}
+
+/* 选区高亮（青蓝） */
+::selection {
+  background: rgba(6, 182, 212, 0.22);
+  color: #0f1b3d;
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #e3e9f5;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(6, 182, 212, 0.28);
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(6, 182, 212, 0.45);
+}
+
+.container-page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 12px rgba(6, 182, 212, 0.35);
+  }
+  .text-glow-pink {
+    text-shadow: 0 0 12px rgba(99, 102, 241, 0.35);
+  }
+  .border-glow {
+    box-shadow: 0 0 0 1px rgba(6, 182, 212, 0.4),
+      0 0 16px rgba(6, 182, 212, 0.18);
+  }
+  /* 浅色玻璃拟态（凉调白底 + 细边框） */
+  .glass {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(15, 27, 61, 0.08);
+  }
+  .glass-strong {
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    border: 1px solid rgba(15, 27, 61, 0.12);
+  }
+  /* 鲜活青蓝→靛蓝渐变文字（缓慢流动，深色停在浅底上仍清晰） */
+  .text-gradient-neon {
+    background-image: linear-gradient(120deg, #0891b2, #4f46e5);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradient-shift 8s linear infinite;
+  }
+  /* 装饰性角标（赛博 HUD 风） */
+  .corner-frame {
+    position: relative;
+  }
+  .corner-frame::before,
+  .corner-frame::after {
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-color: rgba(6, 182, 212, 0.5);
+    border-style: solid;
+  }
+  .corner-frame::before {
+    top: -1px;
+    left: -1px;
+    border-width: 1px 0 0 1px;
+  }
+  .corner-frame::after {
+    bottom: -1px;
+    right: -1px;
+    border-width: 0 1px 1px 0;
+  }
+}
+
+/* 渐变流动关键帧（供 .text-gradient-neon 等使用） */
+@keyframes gradient-shift {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* 滚动入场：进入视口淡入上浮（由 .is-visible 触发） */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal-up.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* 极细颗粒质感：避免大面积浅底发「平 / 数字感」，提升高级感（极低透明度） */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-up {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .animate-float,
+  .animate-pulse-glow,
+  .animate-gradient-shift {
+    animation: none !important;
+  }
+}
