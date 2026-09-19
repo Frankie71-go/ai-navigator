@@ -25,6 +25,17 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+        env:
+          # 云端开关：从 GitHub Actions Secrets 注入（不写进公开仓库，遵守隐私红线）。
+          # 需在 Repo Settings → Secrets and variables → Actions 中新增以下 4 个 repository secret：
+          #   VITE_TCB_ENV               = ai-navigator-k-d8g7vx3dn6bcbc310
+          #   VITE_AI_VERIFY_HTTP_URL    = https://ai-navigator-k-d8g7vx3dn6bcbc310.service.tcloudbase.com/ai-verify
+          #   VITE_TEAMMATE_HTTP_URL     = https://ai-navigator-k-d8g7vx3dn6bcbc310.service.tcloudbase.com/teammate-ops
+          #   VITE_BEHAVIORS_HTTP_URL    = https://ai-navigator-k-d8g7vx3dn6bcbc310.service.tcloudbase.com/behaviors
+          VITE_TCB_ENV: ${{ secrets.VITE_TCB_ENV }}
+          VITE_AI_VERIFY_HTTP_URL: ${{ secrets.VITE_AI_VERIFY_HTTP_URL }}
+          VITE_TEAMMATE_HTTP_URL: ${{ secrets.VITE_TEAMMATE_HTTP_URL }}
+          VITE_BEHAVIORS_HTTP_URL: ${{ secrets.VITE_BEHAVIORS_HTTP_URL }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
