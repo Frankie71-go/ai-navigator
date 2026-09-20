@@ -81,7 +81,11 @@ export default function CompetitionsPage() {
         const hay = `${c.name} ${c.organizer} ${c.aiDirection.join(" ")} ${c.skills.join(
           " "
         )} ${c.tags.join(" ")} ${c.description || ""}`.toLowerCase();
-        if (!hay.includes(kw)) return false;
+        // 多关键词分词 AND 匹配：搜索词按空白拆开，每个词都要命中
+        const tokens = kw.split(/\s+/).filter(Boolean);
+        for (const t of tokens) {
+          if (!hay.includes(t)) return false;
+        }
       }
       return true;
     });
