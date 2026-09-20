@@ -80,7 +80,7 @@ export default function CompetitionsPage() {
       if (kw) {
         const hay = `${c.name} ${c.organizer} ${c.aiDirection.join(" ")} ${c.skills.join(
           " "
-        )}`.toLowerCase();
+        )} ${c.tags.join(" ")} ${c.description || ""}`.toLowerCase();
         if (!hay.includes(kw)) return false;
       }
       return true;
