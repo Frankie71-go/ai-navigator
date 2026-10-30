@@ -2967,5 +2967,29 @@ export const competitions: Competition[] = [
     officialUrl: "https://ai-match.suzhiyouxuan.com/",
     registrationUrl: "https://ai-match.suzhiyouxuan.com/",
     category: "AIGC 创意赛"
+  },
+  {
+    id: "csig-agent-memory-challenge-2026",
+    name: "CSIG Agent Memory Challenge 2026（第二届 Agent 记忆公开挑战赛）",
+    organizer: "中国图象图形学学会（CSIG，主办）；南京大学、浙江大学、Datawhale、CSIG 企业联络与标准化工作委员会（承办）",
+    time: "2026年9月-11月（第二期 9/20–10/31 报名与评测，11 月中旬发榜）",
+    deadline: "2026-10-31",
+    format: "线上",
+    registration: "通过 Agent Memory Leaderboard 官网（agentmemoryleaderboard.ai）Evaluation 页面提交评测申请并报名；需自行部署标准化 Add（记忆写入）/ Search（记忆检索）接口、申请评测密钥（Key），配置通过 Smoke 测试后启动 Full 评测；支持个人 / 团队 / 跨单位自由组队，全程线上。报名与完整材料提交截止 2026-10-31 23:59（UTC+8）。",
+    aiDirection: ["大模型应用", "机器学习", "自然语言处理", "多模态"],
+    suitableFor: ["全球高校 / 科研院所 / 企业 / 开源社区 / 独立研究者与个人", "具备记忆系统 API 开发能力"],
+    skills: ["长期记忆系统", "API 开发", "大模型评测", "Agent 架构"],
+    difficulty: "高级",
+    competitionLevel: "高",
+    verified: true,
+    region: "international",
+    source: "official",
+    status: "pending",
+    description: "由 CSIG 主办、依托 Agent Memory Leaderboard（AML）统一评测平台的 Agent 记忆公开挑战赛第二期，旨在建立开放、公平、可复现的长期记忆 Benchmark。参赛系统仅需提供标准化 Add/Search 接口即可参与公开评测，平台统一完成任务调度、自动评分与排行榜发布。设文本 / 代码 / 多模态三大赛道，分开源方法榜与商业产品榜两组别；总奖金池 ¥150,000（仅开源方法榜）。本期 2026-09-20 至 10-31（共 42 天），11 月中旬发榜。面向全球开放，是检验 Agent 长期记忆能力的权威公开赛事。",
+    prizes: "总奖金池 ¥150,000（仅开源方法榜：三赛道各设一/二/三等奖及最佳技术创新奖；商业产品榜独立展示不参评奖金）。",
+    tags: ["Agent记忆", "长期记忆", "Benchmark", "CSIG", "全球开放", "多模态"],
+    officialUrl: "https://agentmemoryleaderboard.ai",
+    registrationUrl: "https://agentmemoryleaderboard.ai/evaluation",
+    category: "算法赛"
   }
 ];

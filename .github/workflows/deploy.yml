@@ -25,17 +25,10 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
-        env:
-          # 云端开关：从 GitHub Actions Secrets 注入（不写进公开仓库，遵守隐私红线）。
-          # 需在 Repo Settings → Secrets and variables → Actions 中新增以下 4 个 repository secret：
-          #   VITE_TCB_ENV               = YOUR_TCB_ENV_ID
-          #   VITE_AI_VERIFY_HTTP_URL    = https://YOUR_TCB_ENV_ID.service.tcloudbase.com/ai-verify
-          #   VITE_TEAMMATE_HTTP_URL     = https://YOUR_TCB_ENV_ID.service.tcloudbase.com/teammate-ops
-          #   VITE_BEHAVIORS_HTTP_URL    = https://YOUR_TCB_ENV_ID.service.tcloudbase.com/behaviors
-          VITE_TCB_ENV: ${{ secrets.VITE_TCB_ENV }}
-          VITE_AI_VERIFY_HTTP_URL: ${{ secrets.VITE_AI_VERIFY_HTTP_URL }}
-          VITE_TEAMMATE_HTTP_URL: ${{ secrets.VITE_TEAMMATE_HTTP_URL }}
-          VITE_BEHAVIORS_HTTP_URL: ${{ secrets.VITE_BEHAVIORS_HTTP_URL }}
+        # ⚠️ 隐私红线：公开版（GitHub Pages）恒为「0 凭证模板版」，绝不在此注入任何 envId / 后端地址。
+        # 个人版（本地或私有部署）通过 .env.local 注入凭证；.env.local 已被 .gitignore 排除，不进入公开仓库。
+        # 因此此处不设置任何 VITE_* 环境变量 —— 公开构建产物不含任何云端凭证，符合「公开版 0 凭证」设计。
+        # 若需公开版连接你自己的后端，请 fork 后在私有仓库 Settings → Secrets 中自行配置，勿推回本公开仓库。
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
